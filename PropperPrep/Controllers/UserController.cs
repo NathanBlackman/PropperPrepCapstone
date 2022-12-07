@@ -19,7 +19,7 @@ namespace PropperPrep.Controllers
 
         // Get
         [HttpGet]
-        public ActionResult Get()
+        public ActionResult GetAll()
         {
             var users = _userRepo.GetAllUsers();
             return Ok(users);

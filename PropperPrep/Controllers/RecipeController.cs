@@ -1,26 +1,32 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using PropperPrep.Repositories;
+using PropperPrep.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PropperPrep.Controllers
 {
     public class RecipeController : Controller
     {
+        private readonly IRecipes _recipeRepo;
+
         // GET: RecipeController
-        public ActionResult Index()
+        [HttpGet]
+        public List<Recipe> GetAllRecipes()
         {
-            return View();
+            return _recipeRepo.GetAllRecipes();
         }
 
         // GET: RecipeController/Details/5
-        public ActionResult Details(int id)
+        public Recipe GetRecipeById(int id)
         {
-            return View();
+            return _recipeRepo.GetRecipeById(id);
         }
 
         // GET: RecipeController/Create
-        public ActionResult Create()
+        public Recipe CreateRecipe(Recipe recipe)
         {
-            return View();
+            var newRecipe = _recipeRepo.CreateRecipe(recipe);
+            return newRecipe;
         }
 
         // POST: RecipeController/Create
@@ -39,30 +45,30 @@ namespace PropperPrep.Controllers
         }
 
         // GET: RecipeController/Edit/5
-        public ActionResult Edit(int id)
+        public void UpdateRecipe(Recipe recipe)
         {
-            return View();
+           _recipeRepo.UpdateRecipe(recipe);
         }
 
         // POST: RecipeController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public void UpdateRecipe(int id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                View();
             }
         }
 
         // GET: RecipeController/Delete/5
-        public ActionResult Delete(int id)
+        public void DeleteRecipe(int id)
         {
-            return View();
+            _recipeRepo.DeleteRecipe(id);
         }
 
         // POST: RecipeController/Delete/5

@@ -1,23 +1,39 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using PropperPrep.Models;
+using PropperPrep.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PropperPrep.Controllers
 {
+
+    [Route("api/[controller]")]
+    [ApiController]
     public class ScheduledMealController : Controller
     {
-        // GET: ScheduledMealController
-        public ActionResult Index()
+
+        private readonly IScheduledMeal _scheduledMealRepo;
+
+        public ScheduledMealController(IScheduledMeal scheduledMealRepository)
         {
-            return View();
+            _scheduledMealRepo = scheduledMealRepository;
+        }
+
+        // GET: ScheduledMealController
+        [HttpGet]
+        public List<ScheduledMeal> GetAll()
+        {
+            return _scheduledMealRepo.GetAllScheduledMeals();
         }
 
         // GET: ScheduledMealController/Details/5
-        public ActionResult Details(int id)
+        [HttpGet("{id}")]
+        public ScheduledMeal GetScheduledMealById(int id)
         {
-            return View();
+            return _scheduledMealRepo.GetScheduledMealById(id);
         }
 
         // GET: ScheduledMealController/Create
+        /* STILL TRYING TO DECIDE IF NEEDED
         public ActionResult Create()
         {
             return View();
@@ -36,15 +52,19 @@ namespace PropperPrep.Controllers
             {
                 return View();
             }
-        }
+        }*/
 
         // GET: ScheduledMealController/Edit/5
-        public ActionResult Edit(int id)
+        // USE TO EDIT THE DATE
+
+        [HttpPut("{id}")]
+        public void UpdateScheduledMeal(ScheduledMeal scheduledMeal)
         {
-            return View();
+            _scheduledMealRepo.UpdateScheduledMeal(scheduledMeal);
         }
 
         // POST: ScheduledMealController/Edit/5
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -58,15 +78,15 @@ namespace PropperPrep.Controllers
                 return View();
             }
         }
-
+        */
         // GET: ScheduledMealController/Delete/5
-        public ActionResult Delete(int id)
+        public void DeleteScheduledMeal(int id)
         {
-            return View();
+            _scheduledMealRepo.DeleteScheduledMeal(id);
         }
 
         // POST: ScheduledMealController/Delete/5
-        [HttpPost]
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
@@ -78,6 +98,6 @@ namespace PropperPrep.Controllers
             {
                 return View();
             }
-        }
+        }*/
     }
 }
