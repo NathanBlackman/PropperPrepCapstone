@@ -1,4 +1,4 @@
-﻿using PropperPrep.Models;
+﻿/*using PropperPrep.Models;
 using PropperPrep.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -56,13 +56,13 @@ namespace PropperPrep.Controllers
 
         // GET: ScheduledMealController/Edit/5
         // USE TO EDIT THE DATE
-
+        /*
         [HttpPut("{id}")]
         public void UpdateScheduledMeal(ScheduledMeal scheduledMeal)
         {
             _scheduledMealRepo.UpdateScheduledMeal(scheduledMeal);
         }
-
+        /*
         // POST: ScheduledMealController/Edit/5
         /*
         [HttpPost]
@@ -78,13 +78,13 @@ namespace PropperPrep.Controllers
                 return View();
             }
         }
-        */
+        *//*
         // GET: ScheduledMealController/Delete/5
         public void DeleteScheduledMeal(int id)
         {
             _scheduledMealRepo.DeleteScheduledMeal(id);
         }
-
+*/
         // POST: ScheduledMealController/Delete/5
         /*[HttpPost]
         [ValidateAntiForgeryToken]
@@ -98,6 +98,7 @@ namespace PropperPrep.Controllers
             {
                 return View();
             }
-        }*/
+        }*//*
     }
 }
+*/

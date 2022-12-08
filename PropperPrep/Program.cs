@@ -1,14 +1,12 @@
 using PropperPrep.Repositories;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Mvc.Cors;
 
 var builder = WebApplication.CreateBuilder(args);
-var MyAllowSpecificOrigins = "_myAllowSpceificOrigins";
-// Add services to the container.
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
+
+
+// Add services to the container.
 builder.Services.AddTransient<IUser, UserRepository>();
-/*builder.Services.AddTransient<IRecipes, RecipeRepository>();
-builder.Services.AddTransient<IScheduledMeal, ScheduledMealRepository>();*/
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -34,10 +32,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseCors(MyAllowSpecificOrigins);
 
-app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllers();
 
 app.Run();
+

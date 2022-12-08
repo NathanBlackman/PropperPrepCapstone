@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropperPrep", "PropperPrep\PropperPrep.csproj", "{1D4E1DA3-9276-4F15-8EC3-7DAC28A8B729}"
-EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PropperPrepDB", "PropperPrepDB\PropperPrepDB.sqlproj", "{B5CFF352-A4B9-4266-BF3D-31EDAD236CBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropperPrep", "PropperPrep\PropperPrep.csproj", "{1D4E1DA3-9276-4F15-8EC3-7DAC28A8B729}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +15,6 @@ Global
 		{1D4E1DA3-9276-4F15-8EC3-7DAC28A8B729}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D4E1DA3-9276-4F15-8EC3-7DAC28A8B729}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D4E1DA3-9276-4F15-8EC3-7DAC28A8B729}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B5CFF352-A4B9-4266-BF3D-31EDAD236CBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B5CFF352-A4B9-4266-BF3D-31EDAD236CBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B5CFF352-A4B9-4266-BF3D-31EDAD236CBC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{B5CFF352-A4B9-4266-BF3D-31EDAD236CBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B5CFF352-A4B9-4266-BF3D-31EDAD236CBC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B5CFF352-A4B9-4266-BF3D-31EDAD236CBC}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

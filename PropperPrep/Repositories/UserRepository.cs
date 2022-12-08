@@ -104,11 +104,12 @@ namespace PropperPrep.Repositories
                             UPDATE [User]
                             SET
                                 UserName = @userName,
-                                ProfilePicURL = @profilePicURL,
+                                ProfilePicURL = @profilePicURL
                             WHERE Id = @id";
 
                     cmd.Parameters.AddWithValue("@userName", user.UserName);
-                    cmd.Parameters.AddWithValue("@ProfilePicURL", user.ProfilePicURL);
+                    cmd.Parameters.AddWithValue("@profilePicURL", user.ProfilePicURL);
+                    cmd.Parameters.AddWithValue("@id", user.Id);
 
                     cmd.ExecuteNonQuery();
                 }
