@@ -65,40 +65,13 @@ namespace PropperPrep.Controllers
         /*
         // POST: ScheduledMealController/Edit/5
         /*
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
         *//*
         // GET: ScheduledMealController/Delete/5
         public void DeleteScheduledMeal(int id)
         {
             _scheduledMealRepo.DeleteScheduledMeal(id);
         }
-*/
-        // POST: ScheduledMealController/Delete/5
-        /*[HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }*//*
+
     }
 }
 */

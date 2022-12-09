@@ -8,7 +8,7 @@ namespace PropperPrep.Repositories
         public readonly string _baseSqlSelect = @"SELECT Id,
                                                   recipeId,
                                                   cookDate
-                                                  FROM Recipe";
+                                                  FROM [ScheduledMeal]";
 
         public ScheduledMealRepository(IConfiguration config) : base(config) { }
 
@@ -56,8 +56,64 @@ namespace PropperPrep.Repositories
                     ";
 
                     cmd.Parameters.AddWithValue
+                };
+            }
+        }
+
+        // Update ScheduledMeal
+        public void UpdateScheduledMeal(ScheduledMeal scheduledMeal)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                UPDATE [Order]
+                                SET
+                                RecipeId = @recipeId,
+                                CookDate = @cookDate
+                             WHERE Id = @id";
+
+                    cmd.Parameters.AddWithValue("@recipeId", scheduledMeal.RecipeId);
+                    cmd.Parameters.AddWithValue("@cookDate", scheduledMeal.CookDate);
+                    cmd.Parameters.AddWithValue("@id", scheduledMeal.Id);
+
                 }
             }
+        }
+        
+        // Delete ScheduledMeal
+        public void DeleteScheduledMeal(int id)
+        {
+            using(SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                            DELETE FROM [ScheduledMeal]
+                            WHERE Id = @id";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+        private ScheduledMeal LoadFromData(SqlDataReader reader)
+        {
+            return new ScheduledMeal
+            {
+                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                RecipeId = reader.GetInt32(reader.GetOrdinal("RecipeId")),
+                //Figure out what GetDateOnly would actually be
+                //CookDate = reader.GetDateOnly(reader.GetOrdinal("CookDate"))
+            };
         }
     }
 }
