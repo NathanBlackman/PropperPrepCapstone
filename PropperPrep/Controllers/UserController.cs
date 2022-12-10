@@ -39,10 +39,11 @@ namespace PropperPrep.Controllers
             return Ok(newUser);
         }
 
-        [HttpPut("{id}")]
-        public void Put(User user)
+        [HttpPut]
+        public ActionResult Put(User user)
         {
             _userRepo.UpdateUser(user);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
