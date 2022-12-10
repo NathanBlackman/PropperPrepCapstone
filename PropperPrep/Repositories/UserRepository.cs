@@ -76,10 +76,12 @@ namespace PropperPrep.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                    INSERT INTO [User] (FirebaseId, UserName, ProfilePicURL)
+                    INSERT INTO [User] (Id, FirebaseId, UserName, ProfilePicURL)
                     OUTPUT INSERTED.ID
-                    VALUES (@firebaseId, @userName, @profilePicURL)
+                    VALUES (@id, @firebaseId, @userName, @profilePicURL)
                     ";
+
+                    cmd.Parameters.AddWithValue("@id", user.Id);
                     cmd.Parameters.AddWithValue("@firebaseId", user.FirebaseId);
                     cmd.Parameters.AddWithValue("@userName", user.UserName);
                     cmd.Parameters.AddWithValue("@profilePicURL", user.ProfilePicURL);
