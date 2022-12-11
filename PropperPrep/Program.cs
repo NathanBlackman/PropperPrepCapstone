@@ -7,6 +7,8 @@ var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 // Add services to the container.
 builder.Services.AddTransient<IUser, UserRepository>();
+builder.Services.AddTransient<IRecipes, RecipeRepository>();
+builder.Services.AddTransient<IScheduledMeal,ScheduledMealRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -1,6 +1,5 @@
-﻿/*using PropperPrep.Models;
+﻿using PropperPrep.Models;
 using PropperPrep.Repositories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PropperPrep.Controllers
@@ -20,12 +19,14 @@ namespace PropperPrep.Controllers
 
         // GET: ScheduledMealController
         [HttpGet]
-        public List<ScheduledMeal> GetAll()
+        public ActionResult GetAllScheduledMeals()
         {
-            return _scheduledMealRepo.GetAllScheduledMeals();
+            var meals = _scheduledMealRepo.GetAllScheduledMeals();
+            return Ok(meals);
         }
 
         // GET: ScheduledMealController/Details/5
+        // MIGHT HAVE TO CHANGE ACTIONRESULT
         [HttpGet("{id}")]
         public ScheduledMeal GetScheduledMealById(int id)
         {
@@ -33,45 +34,26 @@ namespace PropperPrep.Controllers
         }
 
         // GET: ScheduledMealController/Create
-        /* STILL TRYING TO DECIDE IF NEEDED
-        public ActionResult Create()
+        [HttpPost]
+        public ActionResult CreateScheduledMeal(ScheduledMeal scheduledMeal)
         {
-            return View();
+            var newMeal = _scheduledMealRepo.CreateScheduledMeal(scheduledMeal);
+            return Ok(newMeal);
         }
 
-        // POST: ScheduledMealController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }*/
 
         // GET: ScheduledMealController/Edit/5
-        // USE TO EDIT THE DATE
-        /*
-        [HttpPut("{id}")]
+        [HttpPut]
         public void UpdateScheduledMeal(ScheduledMeal scheduledMeal)
         {
             _scheduledMealRepo.UpdateScheduledMeal(scheduledMeal);
         }
-        /*
-        // POST: ScheduledMealController/Edit/5
-        /*
-        *//*
+
         // GET: ScheduledMealController/Delete/5
+        [HttpDelete]
         public void DeleteScheduledMeal(int id)
         {
             _scheduledMealRepo.DeleteScheduledMeal(id);
         }
-
     }
 }
-*/

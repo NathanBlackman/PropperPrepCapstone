@@ -39,7 +39,7 @@ namespace PropperPrep.Controllers
             return Ok(newUser);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Put(User user)
         {
             _userRepo.UpdateUser(user);

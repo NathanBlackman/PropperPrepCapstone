@@ -1,4 +1,4 @@
-﻿/*using PropperPrep.Models;
+﻿using PropperPrep.Models;
 using Microsoft.Data.SqlClient;
 
 namespace PropperPrep.Repositories
@@ -26,12 +26,38 @@ namespace PropperPrep.Repositories
                         var results = new List<ScheduledMeal>();
                         while (reader.Read())
                         {
-                            var order = LoadFromData(reader);
+                            var meal = LoadFromData(reader);
 
-                            results.Add(order);
+                            results.Add(meal);
                         }
 
                         return results;
+                    }
+                }
+            }
+        }
+
+        public ScheduledMeal GetScheduledMealById(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = $"{_baseSqlSelect} WHERE Id" + $" = @id";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+                    
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        ScheduledMeal? result = null;
+                        if (reader.Read())
+                        {
+                            return LoadFromData(reader);
+                        }
+
+                        return result;
+
                     }
                 }
             }
@@ -46,16 +72,20 @@ namespace PropperPrep.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                    INSERT INTO [ScheduledMeal]         (id,
-                                                         recipeId,
-                                                         cookDate)
+                    INSERT INTO [ScheduledMeal]         (RecipeId,
+                                                         CookDate)
                     OUTPUT INSERTED.ID
-                    VALUES                              (@id,
-                                                         @recipeId,
+                    VALUES                              (@recipeId,
                                                          @cookDate);
                     ";
 
-                    cmd.Parameters.AddWithValue
+                    cmd.Parameters.AddWithValue("@recipeId", scheduledMeal.RecipeId);
+                    cmd.Parameters.AddWithValue("@cookDate", scheduledMeal.CookDate);
+
+                    int id = (int)cmd.ExecuteScalar();
+                    scheduledMeal.Id = id;
+                    return scheduledMeal;
+
                 };
             }
         }
@@ -70,7 +100,7 @@ namespace PropperPrep.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                                UPDATE [Order]
+                                UPDATE [ScheduledMeal]
                                 SET
                                 RecipeId = @recipeId,
                                 CookDate = @cookDate
@@ -80,6 +110,7 @@ namespace PropperPrep.Repositories
                     cmd.Parameters.AddWithValue("@cookDate", scheduledMeal.CookDate);
                     cmd.Parameters.AddWithValue("@id", scheduledMeal.Id);
 
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
@@ -111,10 +142,8 @@ namespace PropperPrep.Repositories
             {
                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
                 RecipeId = reader.GetInt32(reader.GetOrdinal("RecipeId")),
-                //Figure out what GetDateOnly would actually be
-                //CookDate = reader.GetDateOnly(reader.GetOrdinal("CookDate"))
+                CookDate = reader.GetDateTime(reader.GetOrdinal("CookDate"))
             };
         }
     }
 }
-*/

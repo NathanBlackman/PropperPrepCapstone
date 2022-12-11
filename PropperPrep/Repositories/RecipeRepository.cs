@@ -1,4 +1,4 @@
-﻿/*using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using PropperPrep.Models;
 
 namespace PropperPrep.Repositories
@@ -176,4 +176,3 @@ namespace PropperPrep.Repositories
         }
     }
 }
-*/
