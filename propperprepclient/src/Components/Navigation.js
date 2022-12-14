@@ -1,11 +1,12 @@
 import React from "react";
 //import useHistory from "react-router-dom";
 import Container from 'react-bootstrap/Container';
+import PropTypes from "prop-types";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-export const Navigation = () => {
+export const Navigation = ({ user }) => {
     //const history = useHistory();
    
     return (
@@ -17,6 +18,12 @@ export const Navigation = () => {
                 <Nav className="me-auto">
                     <Nav.Link href="/home">Home</Nav.Link>
                     <Nav.Link href="/profile">Link</Nav.Link>
+                    <img
+                        href="/home"
+                        className="profilePic"
+                        alt={user.name}
+                        src={user.ProfilePicURL}
+                        ></img>
                     <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">
@@ -33,4 +40,21 @@ export const Navigation = () => {
         </Container>
     </Navbar>
     );
+}
+
+Navigation.defaultProps = {
+    user: null,
+};
+
+Navigation.propTypes = {
+    user: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.shape({
+            name: PropTypes.string,
+            image: PropTypes.string,
+            uid: PropTypes.string,
+            user: PropTypes.string,
+
+        }),
+    ]),
 }
