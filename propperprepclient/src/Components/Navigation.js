@@ -1,10 +1,12 @@
 import React from "react";
 //import useHistory from "react-router-dom";
 import Container from 'react-bootstrap/Container';
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Button } from "react-bootstrap";
+import { signOutUser } from "../Utils/auth";
 
 export const Navigation = ({ user }) => {
     //const history = useHistory();
@@ -17,14 +19,13 @@ export const Navigation = ({ user }) => {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                     <Nav.Link href="/home">Home</Nav.Link>
-                    <Nav.Link href="/profile">Link</Nav.Link>
-                    <img
-                        href="/home"
-                        className="profilePic"
-                        alt={user.name}
-                        src={user.ProfilePicURL}
-                        ></img>
+                    <Nav.Link href="/profile">Profile</Nav.Link>
+                    <Nav.Link href="/recipes">Recipes</Nav.Link>
+                    <Nav.Link href="/schedule">Schedule</Nav.Link>
+                    
+                    
                     <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                        <Button type='button' onClick={signOutUser}> Sign Out </Button>
                         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">
                             Another action
@@ -41,7 +42,7 @@ export const Navigation = ({ user }) => {
     </Navbar>
     );
 }
-
+/*
 Navigation.defaultProps = {
     user: null,
 };
@@ -58,3 +59,4 @@ Navigation.propTypes = {
         }),
     ]),
 }
+*/
