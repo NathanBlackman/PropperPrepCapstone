@@ -18,7 +18,7 @@ export default function Router({ user }) {
             <Routes>
                 <Route exact path="/" element={<Home/>} />
                 
-                <Route exact path="/profile" element={<Profile />} />
+                <Route exact path="/profile" element={<Profile user={user} />} />
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/recipes" element={<Recipes />} />
                 <Route exact path="/recipe-form" element={<RecipeForm />} />

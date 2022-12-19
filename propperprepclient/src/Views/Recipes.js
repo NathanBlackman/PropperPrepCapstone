@@ -20,11 +20,12 @@ export default function Recipes() {
                     <>
                         <div className='recipecard-container'>
                             {recipes.map((recipe) => (
-                                <RecipeCards 
-                                    //add key when user is implemented
-                                    recipe={recipe}
-                                    setRecipes={setRecipes}
-                                />
+                                <div key={recipe.id}>
+                                    <img className='recipeImage' alt={recipe.mealName} src={recipe.imageURL} />
+                                    <h1>{recipe.mealName}</h1>
+                                    <p>{recipe.description}</p>
+
+                                </div>
                             ))}
                         </div>
                     </>
