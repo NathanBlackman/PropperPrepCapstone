@@ -7,7 +7,7 @@ export default function Profile({ user }) {
         <div>
             <h1>Profile</h1>
             <div className='ProfileNameAndPic'>
-                <h1>Is it working?</h1>
+
                 <img className='ProfilePic'
                     src={user.photoURL} 
                     alt={user.displayName}

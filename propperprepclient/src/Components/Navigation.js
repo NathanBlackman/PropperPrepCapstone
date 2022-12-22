@@ -30,7 +30,6 @@ export const Navigation = ({ user }) => {
                         alt={user.displayName}
                     ></img>
                     <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                        
                         <NavDropdown.Item href="/profile">{user.displayName}</NavDropdown.Item>
                         <Button type='button' onClick={signOutUser}> Sign Out </Button>
                     </NavDropdown>

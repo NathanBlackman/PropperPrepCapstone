@@ -15,18 +15,6 @@ function App() {
     return <Loader />
   }
  
-
-/*
-  return (
-    
-    <div className="App">
-      <>
-        <Navigation />
-        <Router />
-      </>
-    </div>
-  );
-  */
   return (
     <div className="App">
       { user ? (

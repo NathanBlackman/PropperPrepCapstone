@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 //import { getAllRecipes } from '../ApiManager';
 import Button from 'react-bootstrap/Button';
@@ -35,3 +36,4 @@ RecipeCards.propTypes = {
     setRecipe: PropTypes.func.isRequired,
 }
 
+*/
