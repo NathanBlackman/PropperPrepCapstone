@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Button } from "react-bootstrap";
+import { signOutUser } from "../Utils/auth";
 
 export const Navigation = ({ user }) => {
     //const history = useHistory();
@@ -16,24 +18,20 @@ export const Navigation = ({ user }) => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Nav.Link href="/home">Home</Nav.Link>
-                    <Nav.Link href="/profile">Link</Nav.Link>
+                    <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href="/profile">Profile</Nav.Link>
+                    <Nav.Link href="/recipes">Recipes</Nav.Link>
+                    <Nav.Link href="/schedule">Schedule</Nav.Link>
+                    
                     <img
-                        href="/home"
+                        href="/"
                         className="profilePic"
-                        alt={user.name}
-                        src={user.ProfilePicURL}
-                        ></img>
+                        src={user.photoURL}
+                        alt={user.displayName}
+                    ></img>
                     <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">
-                            Another action
-                        </NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">
-                            Separated link
-                        </NavDropdown.Item>
+                        <NavDropdown.Item href="/profile">{user.displayName}</NavDropdown.Item>
+                        <Button type='button' onClick={signOutUser}> Sign Out </Button>
                     </NavDropdown>
                 </Nav>
             </Navbar.Collapse>

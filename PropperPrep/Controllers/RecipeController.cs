@@ -38,7 +38,7 @@ namespace PropperPrep.Controllers
         }
 
         // GET: RecipeController/Edit/5
-        [HttpPut]
+        [HttpPut("updateRecipe/{id}")]
         public void UpdateRecipe(Recipe recipe)
         {
            _recipeRepo.UpdateRecipe(recipe);

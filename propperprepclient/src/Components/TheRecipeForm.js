@@ -1,15 +1,9 @@
-import React from 'react';
-import TheRecipeForm from '../Components/TheRecipeForm';
+import React, { useEffect, useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import { useNavigate, useParams } from 'react-router-dom';
+import { createRecipe, getRecipeById, updateRecipe } from '../ApiManager';
 
-export default function RecipeForm() {
-  return (
-    <div>
-      <TheRecipeForm />
-    </div>
-  )
-}
-
-/*
 const initialState = {
     mealName: '',
     description: '',
@@ -19,7 +13,7 @@ const initialState = {
     userId: '',
   };
 
-export default function RecipeForm({ user }) {
+export default function TheRecipeForm({ user }) {
   
   const [formInput, setFormInput] = useState({});
   const { id } = useParams();
@@ -28,10 +22,12 @@ export default function RecipeForm({ user }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(e.target.value)
     setFormInput((preState) => ({
       ...preState,
       [name]: value,
     }));
+    console.log(formInput)
   };
 
   const resetForm = () => {
@@ -41,13 +37,14 @@ export default function RecipeForm({ user }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (id) {
-      updateRecipe(formInput).then(() => {
+      debugger
+      updateRecipe(id, formInput).then(() => {
         resetForm();
         navigate('/recipes');
+        console.log("did this work at all??");
       })
     } else {
-      console.log("will it work");
-      createRecipe({ ...formInput, userId: user.userId})
+      createRecipe({ ...formInput, userId: user.id})
         .then(() => {
           resetForm();
           navigate("/recipes");
@@ -55,7 +52,10 @@ export default function RecipeForm({ user }) {
     }
   }
 
+
+
   useEffect(() => {
+    debugger
     if (id) {
       getRecipeById(id).then((recipe) => {
           setFormInput({
@@ -73,38 +73,38 @@ export default function RecipeForm({ user }) {
   return (
     
     <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" >
         <Form.Label>Meal Name</Form.Label>
-        <Form.Control type="text" placeholder="Enter Meal Name" />
-        <Form.Text className="text-muted" onChange={handleChange}>
+        <Form.Control type="text" onChange={handleChange} placeholder="Enter Meal Name" />
+        <Form.Text className="text-muted">
           {formInput.mealName || ''}
         </Form.Text>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" >
         <Form.Label>Description</Form.Label>
-        <Form.Control type="textarea" placeholder="Enter Meal Description" />
-        <Form.Text className="text-muted" onClick={handleChange}>
+        <Form.Control type="textarea" onChange={handleChange} placeholder="Enter Meal Description" />
+        <Form.Text className="text-muted">
           {formInput.description || ''}
         </Form.Text>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Group className="mb-3" >
         <Form.Label>Ingredients</Form.Label>
-        <Form.Control type="textarea" placeholder="Enter Ingredients" />
-        <Form.Text className="text-muted" onClick={handleChange}>
+        <Form.Control type="textarea" onChange={handleChange} placeholder="Enter Ingredients" />
+        <Form.Text className="text-muted">
           {formInput.ingredients || ''}
         </Form.Text>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3">
         <Form.Label>Directions</Form.Label>
-        <Form.Control type="textarea" placeholder="Enter Directions" />
-        <Form.Text className="text-muted" onClick={handleChange}>
+        <Form.Control type="textarea" onChange={handleChange} placeholder="Enter Directions" />
+        <Form.Text className="text-muted">
           {formInput.directions || ''}
         </Form.Text>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3">
         <Form.Label>Image URL</Form.Label>
         <Form.Control type="url" placeholder="imagejpg.com..." />
-        <Form.Text className="text">
+        <Form.Text className="text" onChange={handleChange}>
           {formInput.imageURL}
         </Form.Text>
       </Form.Group>
@@ -114,4 +114,4 @@ export default function RecipeForm({ user }) {
     
   );
 }
-*/
+

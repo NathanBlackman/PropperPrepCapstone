@@ -1,20 +1,17 @@
-/* eslint-disable react/jsx-props-no-spreading */
-// Context API Docs: https://beta.reactjs.org/learn/passing-data-deeply-with-context
-
-import { 
-    React,
+import React, { 
     createContext,
     useContext,
     useEffect,
     useMemo,
     useState,
   } from 'react';
-  import { firebase } from './client';
+  import { auth } from './client';
+  import { onAuthStateChanged } from 'firebase/auth';
   
   const AuthContext = createContext();
   
-  AuthContext.displayName = 'AuthContext'; // Context object accepts a displayName string property. React DevTools uses this string to determine what to display for the context. https://reactjs.org/docs/context.html#contextdisplayname
-  
+  AuthContext.displayName = 'AuthContext'; 
+
   const AuthProvider = (props) => {
     const [user, setUser] = useState(null);
   
@@ -24,17 +21,16 @@ import {
     // an object/value = user is logged in
   
     useEffect(() => {
-      firebase.auth().onAuthStateChanged((fbUser) => {
+      onAuthStateChanged( auth, (fbUser) => {
         if (fbUser) {
           setUser(fbUser);
         } else {
           setUser(false);
         }
-      }); // creates a single global listener for auth state changed
+      });
     }, []);
   
     const value = useMemo(
-      // https://reactjs.org/docs/hooks-reference.html#usememo
       () => ({
         user,
         userLoading: user === null,
@@ -58,4 +54,3 @@ import {
   };
   
   export { AuthProvider, useAuth, AuthConsumer };
-  

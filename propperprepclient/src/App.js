@@ -1,18 +1,20 @@
 import React from 'react';
+//import React, { useState } from 'react';
 import Router from './Router';
-import Loading from './Components/Loading';
+import Loader from './Components/Loading';
 import { Navigation } from './Components/Navigation';
 import 'firebase/auth';
 import Login from './Views/Login';
 import { useAuth } from './Utils/authContext';
 
+
 function App() {
   const { user, userLoading } = useAuth();
 
   if (userLoading) {
-    return <Loading />
+    return <Loader />
   }
-
+ 
   return (
     <div className="App">
       { user ? (
@@ -25,7 +27,9 @@ function App() {
       )}
       
     </div>
+    
   );
+
 }
 
 export default App;
