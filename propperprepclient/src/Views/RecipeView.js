@@ -5,7 +5,7 @@ import { deleteRecipe, getRecipeById } from "../ApiManager";
 export default function RecipeView() {
     const [recipe, setRecipe] = useState({});
 
-    const { id } = useParams()
+    const { id } = useParams();
 
     const navigate = useNavigate();
 
@@ -17,6 +17,7 @@ export default function RecipeView() {
     }
 
     const handleDelete = (id) => {
+        debugger
         deleteRecipe(id).then(() => navigate('/recipes'));
     }
 
@@ -34,7 +35,7 @@ export default function RecipeView() {
             <h4>{recipe.ingredients}</h4>
             <p>{recipe.directions}</p>
             <button type='button' onClick={handleUpdateNavigate}>Edit</button>
-            <button type='button' onClick={handleDelete}>Delete</button>
+            <button type='button' onClick={() => handleDelete(id)}>Delete</button>
             <button type='button' onClick={handleCancel}>Cancel</button>
         </div>
     )

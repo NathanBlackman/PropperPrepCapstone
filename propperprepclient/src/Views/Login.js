@@ -1,4 +1,6 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
+import GoogleImage from '../Images/GoogleImage'
 import { signIn } from '../Utils/auth';
 
 export default function Login() {
@@ -6,7 +8,14 @@ export default function Login() {
         <div>
             <h1>Welcome! Please Log in!</h1>
             <div>
-                <button type='button' onClick={signIn}> Login </button>
+                <Button className='LoginButton' type='button' onClick={signIn}> 
+                Login with Google
+                    <img
+                        className='GoogleLogo'
+                        alt='GoogleLogo'
+                        src={GoogleImage}
+                    /> 
+                </Button>
             </div>
         </div>
         

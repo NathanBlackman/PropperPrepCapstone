@@ -14,6 +14,7 @@ import Schedule from "../Views/Schedule";
 
 //add User
 export default function Router({ user }) {
+    debugger
 
     //<Route exact path="/" element={<Authenticated user={user} />} />
     return (

@@ -1,3 +1,5 @@
+
+
 export const getAllRecipes = () => {
     return fetch('https://localhost:7169/api/Recipe')
         .then(res => res.json())
@@ -15,56 +17,31 @@ export const updateRecipe = (id, recipe) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(recipe),
     };
-    debugger
 
-    return fetch(`https://localhost:7169/api/Recipe/${id}`, requestOptions)
+    return fetch(`https://localhost:7169/api/Recipe/updateRecipe/${id}`, requestOptions)
         .then(response => response.json())
         .then(data => this.setState({ postId: data.id }));
 }
 
-/*
-export const updateRecipe = (recipe) => {
-    return fetch(`https://localhost:7169/api/Recipe/${recipe.id}`)
-        .then(res => res.json())
-}
-*/
-/*
-export const createRecipe = () => {
+export const createRecipe = (recipe, firebaseId) => {
 
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: 'POST Request' })
+        body: JSON.stringify(recipe, firebaseId)
     };
-    fetch('https://localhost:7169/api/Recipe', requestOptions)
+    debugger
+    return fetch('https://localhost:7169/api/Recipe', requestOptions)
         .then(res => res.json())
         .then(data => this.setState({ postId: data.id }));
-
-    
-    
-    return fetch('https://localhost:7169/api/Recipe')
-        .then(res => res.json())
-    
 }
-*/
+
+
 export const deleteRecipe = (id) => {
-    return fetch(`https://localhost:7169/api/Recipe/${id}`, { method: 'DELETE' })
+    return fetch(`https://localhost:7169/api/Recipe/deleteRecipe/${id}`, { method: 'DELETE' })
         .then(() => this.setState({ status: 'Delete Complete' }));
 }
 
-//export const CreateScheduledMeal
-
-//export const DeleteScheduledMeal
-
-
-export function createRecipe() {
-
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: 'POST Request' })
-    };
-    fetch('https://localhost:7169/api/Recipe', requestOptions)
-        .then(res => res.json())
-        .then(data => this.setState({ postId: data.id }));
+export const fetchUser = (firebaseId) => {
+    return fetch(`https://localhost:7169/api/User/${firebaseId}`)
 }

@@ -40,17 +40,17 @@ namespace PropperPrep.Repositories
         }
 
 
-        public User? GetUserById(int id)
+        public User? GetUserById(string firebaseId)
         {
             using (SqlConnection conn = Connection)
             {
                 conn.Open();
                 using(SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = $"{_baseSqlSelect} WHERE Id" +
-                        $" = @id";
+                    cmd.CommandText = $"{_baseSqlSelect} WHERE FirebaseId" +
+                        $" = @firebaseId";
 
-                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@firebaseId", firebaseId);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {

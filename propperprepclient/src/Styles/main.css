@@ -1,0 +1,27 @@
+.GoogleLogo {
+    max-height: 50px;
+    padding-left: 15px;
+}
+
+.LoginButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ProfilePicNav {
+    border-radius: 50px;
+    max-height: 40px;
+}
+
+.ProfilePicNav:hover {
+    border-style: solid;
+    border-color: grey;
+    border-width: 2px;
+}
+
+.ProfilePicNav:active {
+    border-style: solid;
+    border-color: grey;
+    border-width: 3px;
+}

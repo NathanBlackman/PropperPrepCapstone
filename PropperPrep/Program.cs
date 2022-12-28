@@ -1,9 +1,20 @@
 using PropperPrep.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
-
+/*
+var firebaseProjectId = builder.Configuration.GetValue<string>("Authentication:Firebase:ProjectId");
+var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.Authority = googleTokenUrl;
+        options.TokenValidationParameters = new TokenValidationParameters
+    })
+*/
 
 // Add services to the container.
 builder.Services.AddTransient<IUser, UserRepository>();

@@ -1,58 +1,101 @@
-import React from "react";
-//import useHistory from "react-router-dom";
+import React from 'react';
+import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
-import PropTypes from "prop-types";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Button } from "react-bootstrap";
-import { signOutUser } from "../Utils/auth";
+import { signOutUser } from '../Utils/auth';
+import { useNavigate } from 'react-router-dom';
 
-export const Navigation = ({ user }) => {
-    //const history = useHistory();
-   
-    return (
+export default function Navigation({ user }) {
+
+  const navigate = useNavigate();
+
+  const ProfileNavigate = () => {
+    navigate('/profile');
+  }
+
+  return (
     <Navbar bg="light" expand="lg">
-        <Container>
-            <Navbar.Brand href="/home">React-Bootstrap</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/profile">Profile</Nav.Link>
-                    <Nav.Link href="/recipes">Recipes</Nav.Link>
-                    <Nav.Link href="/schedule">Schedule</Nav.Link>
-                    
-                    <img
-                        href="/"
-                        className="profilePic"
-                        src={user.photoURL}
-                        alt={user.displayName}
-                    ></img>
-                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="/profile">{user.displayName}</NavDropdown.Item>
-                        <Button type='button' onClick={signOutUser}> Sign Out </Button>
-                    </NavDropdown>
-                </Nav>
-            </Navbar.Collapse>
-        </Container>
+      <Container>
+        <Navbar.Brand href="/">PropperPrep</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/recipes">Recipes</Nav.Link>
+            <img className='ProfilePicNav'
+              onClick={ProfileNavigate}
+              src={user.photoURL}
+              alt={user.displayName}
+            />
+            <NavDropdown id="basic-nav-dropdown">
+              
+              <NavDropdown.Item href="/profile">{user.displayName}</NavDropdown.Item>
+              
+              <NavDropdown.Divider />
+              <Button onClick={signOutUser}>Sign Out</Button>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
     </Navbar>
-    );
+  );
 }
 
-Navigation.defaultProps = {
-    user: null,
-};
+/*
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  NavbarText,
+} from 'reactstrap';
 
-Navigation.propTypes = {
-    user: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.shape({
-            name: PropTypes.string,
-            image: PropTypes.string,
-            uid: PropTypes.string,
-            user: PropTypes.string,
+export default function Navigation(args) {
+  const [isOpen, setIsOpen] = useState(false);
 
-        }),
-    ]),
+  const toggle = () => setIsOpen(!isOpen);
+
+  return (
+    <div>
+      <Navbar {...args}>
+        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="me-auto" navbar>
+            <NavItem>
+              <NavLink href="/components/">Components</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="https://github.com/reactstrap/reactstrap">
+                GitHub
+              </NavLink>
+            </NavItem>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Options
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem>Option 1</DropdownItem>
+                <DropdownItem>Option 2</DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem>Reset</DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </Nav>
+          <NavbarText>Simple Text</NavbarText>
+        </Collapse>
+      </Navbar>
+    </div>
+  );
 }
+*/
+;

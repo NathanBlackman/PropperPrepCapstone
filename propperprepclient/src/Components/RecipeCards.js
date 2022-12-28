@@ -1,39 +1,44 @@
-/*
-import React from 'react';
-//import { getAllRecipes } from '../ApiManager';
-import Button from 'react-bootstrap/Button';
-import PropTypes from 'prop-types';
-import Card from 'react-bootstrap/Card';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import {
+    Card,
+    CardBody,
+    CardTitle,
+    CardText,
+    CardSubtitle,
+    Button
+} from 'reactstrap';
 
-export default function RecipeCards(recipe)  {
-    
-const navigate = useNavigate()
-
-const handleChange = () => {
-    navigate("/");
-}
-
+// add the export default function thing and the return
+export default function RecipeCards() {
     return (
-    <div>
-        <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={recipe.imageURL} />
-            <Card.Body>
-                <Card.Title>{recipe.mealName}</Card.Title>
-                <Card.Text>
-                    {recipe.description}
-                </Card.Text>
-                <Button type='button' onClick={handleChange}>Go home</Button>
-            </Card.Body>
-        </Card>
-    </div>    
-    
-  );
-}
-
-RecipeCards.propTypes = {
-    recipe: PropTypes.shape(PropTypes.obj).isRequired,
-    setRecipe: PropTypes.func.isRequired,
-}
-
-*/
+<div>
+    <Card
+        style={{
+            width: '18rem'
+        }}
+    >
+        <img
+            alt="Sample"
+            src="https://picsum.photos/300/200"
+        />
+        <CardBody>
+            <CardTitle tag="h5">
+                Card title
+            </CardTitle>
+            <CardSubtitle
+                className="mb-2 text-muted"
+                tag="h6"
+            >
+                Card subtitle
+            </CardSubtitle>
+            <CardText>
+                Some quick example text to build on the card title and make up the bulk of the card‘s content.
+            </CardText>
+            <Button>
+                Button
+            </Button>
+        </CardBody>
+    </Card>
+</div>
+    );
+};

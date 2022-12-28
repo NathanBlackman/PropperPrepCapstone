@@ -73,7 +73,7 @@ namespace PropperPrep.Repositories
         }
 
         // Create Recipe
-        public Recipe CreateRecipe(Recipe recipe)
+        public Recipe CreateRecipe(Recipe recipe, int FirebaseId)
         {
             using (SqlConnection conn = Connection)
             {
@@ -82,6 +82,9 @@ namespace PropperPrep.Repositories
                 {
                     //potentially change the @ ones to uppercase
                     cmd.CommandText = @"
+                        DECLARE @userId
+                        SET @userId = 
+                            (SELECT Id FROM User WHERE FirebaseId = @firebaseId)
                         INSERT INTO [Recipe] (UserId,
                                               MealName,
                                               Description,
@@ -96,7 +99,7 @@ namespace PropperPrep.Repositories
                                                @directions,
                                                @imageURL)";
 
-                    cmd.Parameters.AddWithValue("@userId", recipe.UserId);
+                    cmd.Parameters.AddWithValue("@firebaseId", FirebaseId);
                     cmd.Parameters.AddWithValue("@mealName", recipe.MealName);
                     cmd.Parameters.AddWithValue("@description", recipe.Description);
                     cmd.Parameters.AddWithValue("@ingredients", recipe.Ingredients);

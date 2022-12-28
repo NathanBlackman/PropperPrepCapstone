@@ -1,10 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { 
+  Button,
+  Card,
+  Form,
+  FormGroup,
+  Input,
+  Label,
+
+
+} from 'reactstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { createRecipe, getRecipeById, updateRecipe } from '../ApiManager';
 
-const initialState = {
+
+
+export default function TheRecipeForm({ user }) {
+  
+  const { id } = useParams();
+ 
+  const initialState = {
     mealName: '',
     description: '',
     ingredients: '',
@@ -12,17 +26,16 @@ const initialState = {
     imageURL: '',
     userId: '',
   };
-
-export default function TheRecipeForm({ user }) {
+  debugger
+  const [formInput, setFormInput] = useState(initialState);
   
-  const [formInput, setFormInput] = useState({});
-  const { id } = useParams();
   const navigate = useNavigate();
+
+  
 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(e.target.value)
     setFormInput((preState) => ({
       ...preState,
       [name]: value,
@@ -37,14 +50,15 @@ export default function TheRecipeForm({ user }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (id) {
-      debugger
       updateRecipe(id, formInput).then(() => {
         resetForm();
         navigate('/recipes');
         console.log("did this work at all??");
       })
     } else {
-      createRecipe({ ...formInput, userId: user.id})
+      
+      debugger
+      createRecipe({ ...formInput })
         .then(() => {
           resetForm();
           navigate("/recipes");
@@ -55,11 +69,12 @@ export default function TheRecipeForm({ user }) {
 
 
   useEffect(() => {
-    debugger
     if (id) {
       getRecipeById(id).then((recipe) => {
           setFormInput({
+            id: id,
             mealName: recipe.mealName,
+            ingredients: recipe.ingredients,
             description: recipe.description,
             directions: recipe.directions,
             imageURL: recipe.imageURL,
@@ -71,7 +86,103 @@ export default function TheRecipeForm({ user }) {
   }, [id]);
   
   return (
-    
+
+    <div>
+      <Card className="card-form">
+        <Form
+          className='recipe-form'
+          onSubmit={handleSubmit}
+        >
+          <FormGroup
+            className='recipe-name'
+          >
+            <Label for='mealName'>
+              Meal Name
+            </Label>
+            <Input
+              id='mealName'
+              name="mealName"
+              value={formInput.mealName || ''}
+              onChange={handleChange}
+              placeholder="Enter Meal Name"
+              type='text'
+              required
+            />
+          </FormGroup>
+          <FormGroup
+            className='description'
+          >
+            <Label for='description'>
+              Description
+            </Label>
+            <Input
+              id='description'
+              name="description"
+              value={formInput.description || ''}
+              onChange={handleChange}
+              placeholder="Enter Meal Description"
+              type='textarea'
+              required
+            />
+          </FormGroup>
+          <FormGroup
+            className='recipe-name'
+          >
+            <Label for='ingredients'>
+              Ingredients
+            </Label>
+            <Input
+              id='ingredients'
+              name="ingredients"
+              value={formInput.ingredients || ''}
+              onChange={handleChange}
+              placeholder="Enter ingredients"
+              type='textarea'
+              required
+            />
+          </FormGroup>
+          <FormGroup
+            className='recipe-name'
+          >
+            <Label for='directions'>
+              Directions
+            </Label>
+            <Input
+              id='directions'
+              name="directions"
+              value={formInput.directions || ''}
+              onChange={handleChange}
+              placeholder="Enter Directions"
+              type='textarea'
+              required
+            />
+          </FormGroup>
+          <FormGroup
+            className='recipe-name'
+          >
+            <Label for='imageURL'>
+              Image URL
+            </Label>
+            <Input
+              id='imageURL'
+              name="imageURL"
+              value={formInput.imageURL || ''}
+              onChange={handleChange}
+              placeholder="imageurl.com"
+              type='url'
+              required
+            />
+          </FormGroup>
+          <Button
+            type='submit'
+            color="primary"
+          >{id ? 'Update' : 'Submit'}
+          </Button>
+        </Form>
+      </Card>
+    </div>
+
+    /*
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" >
         <Form.Label>Meal Name</Form.Label>
@@ -111,7 +222,7 @@ export default function TheRecipeForm({ user }) {
       <Button type='submit'>{id ? 'Update' : 'Submit'}</Button>
     </Form>
     // add a dropdown calendar and add datetime to it
-    
+    */
   );
 }
 

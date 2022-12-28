@@ -31,9 +31,9 @@ namespace PropperPrep.Controllers
 
         // GET: RecipeController/Create
         [HttpPost]
-        public Recipe CreateRecipe(Recipe recipe)
+        public Recipe CreateRecipe(Recipe recipe, int FirebaseId)
         {
-            var newRecipe = _recipeRepo.CreateRecipe(recipe);
+            var newRecipe = _recipeRepo.CreateRecipe(recipe, FirebaseId);
             return newRecipe;
         }
 
@@ -42,10 +42,11 @@ namespace PropperPrep.Controllers
         public void UpdateRecipe(Recipe recipe)
         {
            _recipeRepo.UpdateRecipe(recipe);
+           
         }
 
         // GET: RecipeController/Delete/5
-        [HttpDelete]
+        [HttpDelete("deleteRecipe/{id}")]
         public void DeleteRecipe(int id)
         {
             _recipeRepo.DeleteRecipe(id);
