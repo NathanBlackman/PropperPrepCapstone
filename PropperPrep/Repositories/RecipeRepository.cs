@@ -12,6 +12,7 @@ namespace PropperPrep.Repositories
                                                     Description,
                                                     Ingredients,
                                                     Directions,
+                                                    
                                                     ImageURL
                                                    FROM [Recipe]";
 
@@ -73,23 +74,20 @@ namespace PropperPrep.Repositories
         }
 
         // Create Recipe
-        public Recipe CreateRecipe(Recipe recipe, int FirebaseId)
+        public Recipe CreateRecipe(Recipe recipe)
         {
             using (SqlConnection conn = Connection)
             {
                 conn.Open();
                 using(SqlCommand cmd = conn.CreateCommand())
                 {
-                    //potentially change the @ ones to uppercase
                     cmd.CommandText = @"
-                        DECLARE @userId
-                        SET @userId = 
-                            (SELECT Id FROM User WHERE FirebaseId = @firebaseId)
                         INSERT INTO [Recipe] (UserId,
                                               MealName,
                                               Description,
                                               Ingredients,
                                               Directions,
+                                              
                                               ImageURL)
                         OUTPUT INSERTED.ID
                         VALUES                (@userId,
@@ -97,13 +95,15 @@ namespace PropperPrep.Repositories
                                                @description,
                                                @ingredients,
                                                @directions,
+                                               
                                                @imageURL)";
 
-                    cmd.Parameters.AddWithValue("@firebaseId", FirebaseId);
+                    cmd.Parameters.AddWithValue("@userId", recipe.UserId);
                     cmd.Parameters.AddWithValue("@mealName", recipe.MealName);
                     cmd.Parameters.AddWithValue("@description", recipe.Description);
                     cmd.Parameters.AddWithValue("@ingredients", recipe.Ingredients);
                     cmd.Parameters.AddWithValue("@directions", recipe.Directions);
+                    //cmd.Parameters.AddWithValue("@schedule", recipe.Schedule);
                     cmd.Parameters.AddWithValue("@imageURL", recipe.ImageURL);
 
                     int id = (int)cmd.ExecuteScalar();
@@ -129,6 +129,7 @@ namespace PropperPrep.Repositories
                                 Description = @description,
                                 Ingredients = @ingredients,
                                 Directions = @directions,
+                                
                                 ImageURL = @imageURL
                             WHERE Id = @id";
 
@@ -137,6 +138,7 @@ namespace PropperPrep.Repositories
                     cmd.Parameters.AddWithValue("@description", recipe.Description);
                     cmd.Parameters.AddWithValue("@ingredients", recipe.Ingredients);
                     cmd.Parameters.AddWithValue("@directions", recipe.Directions);
+                    
                     cmd.Parameters.AddWithValue("@imageURL", recipe.ImageURL);
                     cmd.Parameters.AddWithValue("@id", recipe.Id);
 
@@ -169,11 +171,12 @@ namespace PropperPrep.Repositories
             return new Recipe
             {
                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
+                UserId = reader.GetString(reader.GetOrdinal("UserId")),
                 MealName = reader.GetString(reader.GetOrdinal("MealName")),
                 Description = reader.GetString(reader.GetOrdinal("Description")),
                 Ingredients = reader.GetString(reader.GetOrdinal("Ingredients")),
                 Directions = reader.GetString(reader.GetOrdinal("Directions")),
+                
                 ImageURL = reader.GetString(reader.GetOrdinal("ImageURL")),
             };
         }

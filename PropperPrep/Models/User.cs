@@ -6,5 +6,6 @@
         public string? FirebaseId { get; set; }
         public string? UserName { get; set; }
         public string? ProfilePicURL { get; set; }
+
     }
 }

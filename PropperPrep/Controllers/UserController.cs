@@ -25,10 +25,16 @@ namespace PropperPrep.Controllers
             return Ok(users);
         }
 
-        [HttpGet("{FirebaseId}")]
+        [HttpGet("{firebaseId}")]
         public ActionResult Details(string firebaseId)
         {
             var user = _userRepo.GetUserById(firebaseId);
+
+            if(user == null)
+            {
+                return NotFound();
+            }
+            
             return Ok(user);
         }
 

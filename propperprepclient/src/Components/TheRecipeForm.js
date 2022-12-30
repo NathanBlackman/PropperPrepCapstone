@@ -5,9 +5,7 @@ import {
   Form,
   FormGroup,
   Input,
-  Label,
-
-
+  Label
 } from 'reactstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { createRecipe, getRecipeById, updateRecipe } from '../ApiManager';
@@ -18,16 +16,20 @@ export default function TheRecipeForm({ user }) {
   
   const { id } = useParams();
  
+  
   const initialState = {
     mealName: '',
     description: '',
     ingredients: '',
     directions: '',
     imageURL: '',
-    userId: '',
+    userId: user.userId,
   };
-  debugger
+
+  console.log({ user })
+
   const [formInput, setFormInput] = useState(initialState);
+  //const []
   
   const navigate = useNavigate();
 
@@ -50,6 +52,27 @@ export default function TheRecipeForm({ user }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (id) {
+      updateRecipe(id, {...formInput}).then(() => {
+        resetForm();
+        navigate('/recipes');
+        console.log("did this work at all??");
+      })
+    } else {
+      
+      debugger
+      createRecipe({ ...formInput })
+        //.then(data => this.setState({ postId: data.id }));
+        .then(() => {
+          resetForm();
+          navigate("/recipes");
+        });
+    }
+  }
+
+/*
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (id) {
       updateRecipe(id, formInput).then(() => {
         resetForm();
         navigate('/recipes');
@@ -65,14 +88,15 @@ export default function TheRecipeForm({ user }) {
         });
     }
   }
-
+*/
 
 
   useEffect(() => {
     if (id) {
       getRecipeById(id).then((recipe) => {
           setFormInput({
-            id: id,
+            id: parseInt(id),
+            userId: user.userId,
             mealName: recipe.mealName,
             ingredients: recipe.ingredients,
             description: recipe.description,
@@ -80,10 +104,8 @@ export default function TheRecipeForm({ user }) {
             imageURL: recipe.imageURL,
           });
       })
-    } else {
-      setFormInput(initialState);
-    }
-  }, [id]);
+    } 
+  }, [id, user.userId]);
   
   return (
 

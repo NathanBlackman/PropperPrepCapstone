@@ -9,7 +9,7 @@ import {
 } from 'reactstrap';
 
 // add the export default function thing and the return
-export default function RecipeCards() {
+export default function RecipeCards(recipe) {
     return (
 <div>
     <Card
@@ -23,16 +23,16 @@ export default function RecipeCards() {
         />
         <CardBody>
             <CardTitle tag="h5">
-                Card title
+                {recipe.mealName}
             </CardTitle>
             <CardSubtitle
                 className="mb-2 text-muted"
                 tag="h6"
             >
-                Card subtitle
+                {recipe.description}
             </CardSubtitle>
             <CardText>
-                Some quick example text to build on the card title and make up the bulk of the card‘s content.
+                Some quick example text to build on the card title and make up the bulk of the card's content.
             </CardText>
             <Button>
                 Button

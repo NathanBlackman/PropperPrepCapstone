@@ -19,21 +19,18 @@ export const updateRecipe = (id, recipe) => {
     };
 
     return fetch(`https://localhost:7169/api/Recipe/updateRecipe/${id}`, requestOptions)
-        .then(response => response.json())
-        .then(data => this.setState({ postId: data.id }));
 }
 
-export const createRecipe = (recipe, firebaseId) => {
+export const createRecipe = (recipe) => {
 
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(recipe, firebaseId)
+        body: JSON.stringify(recipe)
     };
     debugger
     return fetch('https://localhost:7169/api/Recipe', requestOptions)
         .then(res => res.json())
-        .then(data => this.setState({ postId: data.id }));
 }
 
 

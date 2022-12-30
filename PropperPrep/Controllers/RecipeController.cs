@@ -31,17 +31,18 @@ namespace PropperPrep.Controllers
 
         // GET: RecipeController/Create
         [HttpPost]
-        public Recipe CreateRecipe(Recipe recipe, int FirebaseId)
+        public IActionResult CreateRecipe(Recipe recipe)
         {
-            var newRecipe = _recipeRepo.CreateRecipe(recipe, FirebaseId);
-            return newRecipe;
+            var newRecipe = _recipeRepo.CreateRecipe(recipe);
+            return Ok(newRecipe);
         }
 
         // GET: RecipeController/Edit/5
         [HttpPut("updateRecipe/{id}")]
-        public void UpdateRecipe(Recipe recipe)
+        public IActionResult UpdateRecipe(Recipe recipe)
         {
            _recipeRepo.UpdateRecipe(recipe);
+            return NoContent();
            
         }
 
