@@ -28,8 +28,8 @@ export const createRecipe = (recipe) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(recipe)
     };
-    debugger
-    return fetch('https://localhost:7169/api/Recipe', requestOptions)
+    //debugger
+    return fetch('https://localhost:7169/api/Recipe/postRecipe', requestOptions)
         .then(res => res.json())
 }
 

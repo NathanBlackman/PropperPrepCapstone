@@ -50,6 +50,7 @@ export default function Recipes() {
                                     <img className='recipeImage' alt={recipe.mealName} src={recipe.imageURL} onClick={() => handleViewNavigate(recipe.id)} />
                                     <h1>{recipe.mealName}</h1>
                                     <p>{recipe.description}</p>
+                                    <h3>Scheduled for {recipe.schedule}</h3>
                                     <Button type='button' onClick={handleUpdateNavigate}>Edit</Button>
                                     <Button type='button' onClick={handleDelete}>Delete</Button>
 

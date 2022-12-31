@@ -12,7 +12,7 @@ namespace PropperPrep.Repositories
                                                     Description,
                                                     Ingredients,
                                                     Directions,
-                                                    
+                                                    Schedule,
                                                     ImageURL
                                                    FROM [Recipe]";
 
@@ -87,7 +87,7 @@ namespace PropperPrep.Repositories
                                               Description,
                                               Ingredients,
                                               Directions,
-                                              
+                                              Schedule,
                                               ImageURL)
                         OUTPUT INSERTED.ID
                         VALUES                (@userId,
@@ -95,7 +95,7 @@ namespace PropperPrep.Repositories
                                                @description,
                                                @ingredients,
                                                @directions,
-                                               
+                                               @schedule,
                                                @imageURL)";
 
                     cmd.Parameters.AddWithValue("@userId", recipe.UserId);
@@ -103,7 +103,7 @@ namespace PropperPrep.Repositories
                     cmd.Parameters.AddWithValue("@description", recipe.Description);
                     cmd.Parameters.AddWithValue("@ingredients", recipe.Ingredients);
                     cmd.Parameters.AddWithValue("@directions", recipe.Directions);
-                    //cmd.Parameters.AddWithValue("@schedule", recipe.Schedule);
+                    cmd.Parameters.AddWithValue("@schedule", recipe.Schedule);
                     cmd.Parameters.AddWithValue("@imageURL", recipe.ImageURL);
 
                     int id = (int)cmd.ExecuteScalar();
@@ -129,7 +129,7 @@ namespace PropperPrep.Repositories
                                 Description = @description,
                                 Ingredients = @ingredients,
                                 Directions = @directions,
-                                
+                                Schedule = @schedule,
                                 ImageURL = @imageURL
                             WHERE Id = @id";
 
@@ -138,7 +138,7 @@ namespace PropperPrep.Repositories
                     cmd.Parameters.AddWithValue("@description", recipe.Description);
                     cmd.Parameters.AddWithValue("@ingredients", recipe.Ingredients);
                     cmd.Parameters.AddWithValue("@directions", recipe.Directions);
-                    
+                    cmd.Parameters.AddWithValue("@schedule", recipe.Schedule);
                     cmd.Parameters.AddWithValue("@imageURL", recipe.ImageURL);
                     cmd.Parameters.AddWithValue("@id", recipe.Id);
 
@@ -176,7 +176,7 @@ namespace PropperPrep.Repositories
                 Description = reader.GetString(reader.GetOrdinal("Description")),
                 Ingredients = reader.GetString(reader.GetOrdinal("Ingredients")),
                 Directions = reader.GetString(reader.GetOrdinal("Directions")),
-                
+                Schedule = reader.GetDateTime(reader.GetOrdinal("Schedule")),
                 ImageURL = reader.GetString(reader.GetOrdinal("ImageURL")),
             };
         }

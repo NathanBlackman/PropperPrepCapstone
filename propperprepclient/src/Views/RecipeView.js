@@ -17,8 +17,9 @@ export default function RecipeView() {
     }
 
     const handleDelete = (id) => {
-        debugger
-        deleteRecipe(id).then(() => navigate('/recipes'));
+        deleteRecipe(id).then(() => {
+            navigate('/recipes');
+        });
     }
 
     useEffect(() => {

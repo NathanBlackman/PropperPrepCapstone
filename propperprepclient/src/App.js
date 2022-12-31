@@ -10,7 +10,7 @@ import { useAuth } from './Utils/authContext';
 
 function App() {
   const { user, userLoading } = useAuth();
-  debugger
+  //debugger
   if (userLoading) {
     return <Loader />
   } else if (user) {

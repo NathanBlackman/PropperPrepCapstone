@@ -13,28 +13,25 @@ import { createRecipe, getRecipeById, updateRecipe } from '../ApiManager';
 
 
 export default function TheRecipeForm({ user }) {
-  
+//debugger
   const { id } = useParams();
- 
-  
+
   const initialState = {
     mealName: '',
     description: '',
     ingredients: '',
     directions: '',
     imageURL: '',
-    userId: user.userId,
+    schedule: '',
+    userId: user.uid,
   };
+  //debugger
 
-  console.log({ user })
+  console.log(user.uid)
 
   const [formInput, setFormInput] = useState(initialState);
-  //const []
   
   const navigate = useNavigate();
-
-  
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,29 +55,6 @@ export default function TheRecipeForm({ user }) {
         console.log("did this work at all??");
       })
     } else {
-      
-      debugger
-      createRecipe({ ...formInput })
-        //.then(data => this.setState({ postId: data.id }));
-        .then(() => {
-          resetForm();
-          navigate("/recipes");
-        });
-    }
-  }
-
-/*
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (id) {
-      updateRecipe(id, formInput).then(() => {
-        resetForm();
-        navigate('/recipes');
-        console.log("did this work at all??");
-      })
-    } else {
-      
-      debugger
       createRecipe({ ...formInput })
         .then(() => {
           resetForm();
@@ -88,24 +62,24 @@ export default function TheRecipeForm({ user }) {
         });
     }
   }
-*/
-
 
   useEffect(() => {
     if (id) {
       getRecipeById(id).then((recipe) => {
           setFormInput({
             id: parseInt(id),
-            userId: user.userId,
+            userId: user.uid,
             mealName: recipe.mealName,
             ingredients: recipe.ingredients,
             description: recipe.description,
             directions: recipe.directions,
+            schedule: recipe.schedule,
             imageURL: recipe.imageURL,
           });
       })
     } 
-  }, [id, user.userId]);
+  }, [id, user.uid]);
+  //debugger
   
   return (
 
@@ -180,6 +154,21 @@ export default function TheRecipeForm({ user }) {
             />
           </FormGroup>
           <FormGroup
+            className='recipe-schedule'
+          >
+            <Label for='schedule'>
+              Directions
+            </Label>
+            <Input
+              id='schedule'
+              name="schedule"
+              value={formInput.schedule || ''}
+              onChange={handleChange}
+              placeholder="Add date and Time to Schedule"
+              type='datetime-local'
+            />
+            </FormGroup>
+          <FormGroup
             className='recipe-name'
           >
             <Label for='imageURL'>
@@ -195,6 +184,7 @@ export default function TheRecipeForm({ user }) {
               required
             />
           </FormGroup>
+
           <Button
             type='submit'
             color="primary"
@@ -203,48 +193,5 @@ export default function TheRecipeForm({ user }) {
         </Form>
       </Card>
     </div>
-
-    /*
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" >
-        <Form.Label>Meal Name</Form.Label>
-        <Form.Control type="text" onChange={handleChange} placeholder="Enter Meal Name" />
-        <Form.Text className="text-muted">
-          {formInput.mealName || ''}
-        </Form.Text>
-      </Form.Group>
-      <Form.Group className="mb-3" >
-        <Form.Label>Description</Form.Label>
-        <Form.Control type="textarea" onChange={handleChange} placeholder="Enter Meal Description" />
-        <Form.Text className="text-muted">
-          {formInput.description || ''}
-        </Form.Text>
-      </Form.Group>
-      <Form.Group className="mb-3" >
-        <Form.Label>Ingredients</Form.Label>
-        <Form.Control type="textarea" onChange={handleChange} placeholder="Enter Ingredients" />
-        <Form.Text className="text-muted">
-          {formInput.ingredients || ''}
-        </Form.Text>
-      </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>Directions</Form.Label>
-        <Form.Control type="textarea" onChange={handleChange} placeholder="Enter Directions" />
-        <Form.Text className="text-muted">
-          {formInput.directions || ''}
-        </Form.Text>
-      </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>Image URL</Form.Label>
-        <Form.Control type="url" placeholder="imagejpg.com..." />
-        <Form.Text className="text" onChange={handleChange}>
-          {formInput.imageURL}
-        </Form.Text>
-      </Form.Group>
-      <Button type='submit'>{id ? 'Update' : 'Submit'}</Button>
-    </Form>
-    // add a dropdown calendar and add datetime to it
-    */
   );
 }
-

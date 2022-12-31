@@ -30,7 +30,7 @@ namespace PropperPrep.Controllers
         }
 
         // GET: RecipeController/Create
-        [HttpPost]
+        [HttpPost("postRecipe")]
         public IActionResult CreateRecipe(Recipe recipe)
         {
             var newRecipe = _recipeRepo.CreateRecipe(recipe);
