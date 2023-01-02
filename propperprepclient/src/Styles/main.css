@@ -25,3 +25,23 @@
     border-color: grey;
     border-width: 3px;
 }
+
+.recipe-view-style {
+    display: flex;
+    padding-top: 50px;
+}
+
+.recipe-view-img {
+    float: left;
+    width: 250px;
+    padding-left: 50px;
+}
+/*
+.view-info {
+    float: right;
+}
+*/
+
+.mealname-view {
+    padding-left: 100px;
+}

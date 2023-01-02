@@ -25,9 +25,6 @@ export default function TheRecipeForm({ user }) {
     schedule: '',
     userId: user.uid,
   };
-  //debugger
-
-  console.log(user.uid)
 
   const [formInput, setFormInput] = useState(initialState);
   
@@ -49,12 +46,16 @@ export default function TheRecipeForm({ user }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (id) {
-      updateRecipe(id, {...formInput}).then(() => {
-        resetForm();
-        navigate('/recipes');
-        console.log("did this work at all??");
+      debugger
+      //id
+      updateRecipe(id, user.uid, { ...formInput })
+        .then(() => {
+          resetForm();
+          navigate('/recipes');
+          console.log("did this work at all??");
       })
-    } else {
+    } else { 
+      //debugger
       createRecipe({ ...formInput })
         .then(() => {
           resetForm();

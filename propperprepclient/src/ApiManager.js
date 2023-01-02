@@ -12,6 +12,7 @@ export const getRecipeById = (id) => {
 
 
 export const updateRecipe = (id, recipe) => {
+    //debugger
     const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -19,6 +20,7 @@ export const updateRecipe = (id, recipe) => {
     };
 
     return fetch(`https://localhost:7169/api/Recipe/updateRecipe/${id}`, requestOptions)
+        .then(res => res.json())
 }
 
 export const createRecipe = (recipe) => {

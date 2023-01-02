@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
+//import { Button } from 'react-bootstrap';
 import { deleteRecipe, getAllRecipes } from '../ApiManager';
+import {
+    Card,
+    CardBody,
+    CardTitle,
+    CardSubtitle,
+    Button
+} from 'reactstrap'; 
 //import RecipeCards from '../Components/RecipeCards';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -46,6 +53,7 @@ export default function Recipes() {
                         <div className='recipecard-container'>
                             {recipes.map((recipe) => (
 
+                                /*
                                 <div key={recipe.id}>
                                     <img className='recipeImage' alt={recipe.mealName} src={recipe.imageURL} onClick={() => handleViewNavigate(recipe.id)} />
                                     <h1>{recipe.mealName}</h1>
@@ -55,7 +63,38 @@ export default function Recipes() {
                                     <Button type='button' onClick={handleDelete}>Delete</Button>
 
                                 </div>
-                                // The edit button needs to go to the 
+                                */
+                                // The edit button needs to go to the\
+                                <div className='recipe-card' key={recipe.id}>
+                            <Card
+                                style={{
+                                width: '18rem'
+                                }}
+                                onClick={() => handleViewNavigate(recipe.id)}
+                            >
+                                <img
+                                    alt={recipe.mealName}
+                                    src={recipe.imageURL}
+                                />
+                                    <CardBody>
+                                    <CardTitle tag="h3">
+                                        {recipe.mealName}
+                                    </CardTitle>
+                                    <CardSubtitle
+                                        className="mb-2 text-muted"
+                                        tag="h6"
+                                    >
+                                        {recipe.description}
+                                    </CardSubtitle>
+                                    <Button onClick={handleUpdateNavigate} >
+                                        Edit
+                                    </Button>
+                                    <Button>
+                                        Delete
+                                    </Button>
+                                </CardBody>
+                            </Card>
+                        </div> 
                             ))}
                         </div>
                     </>

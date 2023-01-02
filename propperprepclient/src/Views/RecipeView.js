@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Button } from "reactstrap";
 import { deleteRecipe, getRecipeById } from "../ApiManager";
 
 export default function RecipeView() {
@@ -28,16 +29,17 @@ export default function RecipeView() {
     }, [id]);
     
     return(
-        <div>
-            <h1>Recipe View</h1>
-            <h1>{recipe.mealName}</h1>
-            <img alt={recipe.mealName} src={recipe.imageURL} />
-            <h3>{recipe.description}</h3>
-            <h4>{recipe.ingredients}</h4>
-            <p>{recipe.directions}</p>
-            <button type='button' onClick={handleUpdateNavigate}>Edit</button>
-            <button type='button' onClick={() => handleDelete(id)}>Delete</button>
-            <button type='button' onClick={handleCancel}>Cancel</button>
+        <div className="recipe-view-style">
+            <img className="recipe-view-img" alt={recipe.mealName} src={recipe.imageURL} />
+            <div className="view-info">
+                <h1 className="mealname-view">{recipe.mealName}</h1>
+                <h3>{recipe.description}</h3>
+                <h4>{recipe.ingredients}</h4>
+                <p>{recipe.directions}</p>
+                <Button type='button' onClick={handleUpdateNavigate}>Edit</Button>
+                <Button type='button' onClick={() => handleDelete(id)}>Delete</Button>
+                <Button type='button' onClick={handleCancel}>Cancel</Button>
+            </div>
         </div>
     )
 }

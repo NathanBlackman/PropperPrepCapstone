@@ -11,7 +11,7 @@ import {
 // add the export default function thing and the return
 export default function RecipeCards(recipe) {
     return (
-<div>
+<div key={recipe.id}>
     <Card
         style={{
             width: '18rem'
@@ -32,10 +32,10 @@ export default function RecipeCards(recipe) {
                 {recipe.description}
             </CardSubtitle>
             <CardText>
-                Some quick example text to build on the card title and make up the bulk of the card's content.
+                If correct it will show here: {recipe.mealName}
             </CardText>
             <Button>
-                Button
+                Please Work
             </Button>
         </CardBody>
     </Card>

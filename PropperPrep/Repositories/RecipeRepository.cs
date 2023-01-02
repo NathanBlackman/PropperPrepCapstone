@@ -146,7 +146,6 @@ namespace PropperPrep.Repositories
                 }
             }
         }
-        // Delete Recipe
         public void DeleteRecipe(int id)
         {
             using (SqlConnection conn = Connection)

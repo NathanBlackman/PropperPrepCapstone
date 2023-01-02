@@ -9,8 +9,6 @@
         public string Ingredients { get; set; }
         public string Directions { get; set; }
         public string ImageURL { get; set; }
-
-        // Simplifying ScheduledMeal
         public DateTime Schedule { get; set; }
     }
 }
