@@ -36,9 +36,11 @@ export default function RecipeView() {
                 <h3>{recipe.description}</h3>
                 <h4>{recipe.ingredients}</h4>
                 <p>{recipe.directions}</p>
-                <Button type='button' onClick={handleUpdateNavigate}>Edit</Button>
-                <Button type='button' onClick={() => handleDelete(id)}>Delete</Button>
-                <Button type='button' onClick={handleCancel}>Cancel</Button>
+                <div className="view-button-group">
+                    <Button type='button' onClick={handleUpdateNavigate}>Edit</Button>
+                    <Button type='button' onClick={() => handleDelete(id)}>Delete</Button>
+                    <Button type='button' onClick={handleCancel}>Cancel</Button>  
+                </div>
             </div>
         </div>
     )

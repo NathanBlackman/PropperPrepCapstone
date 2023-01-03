@@ -25,7 +25,7 @@ export default function Router({ user }) {
                 <Route exact path="/profile" element={<Profile user={user} />} />
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/recipes" element={<Recipes />} />
-                <Route exact path="/recipe-form" element={<RecipeForm user={user} />} />
+                <Route exact path="/recipe-form" element={<RecipeForm firebaseId={user.uid} />} />
                 <Route exact path="/recipe-view/:id" element={<RecipeView />} />
                 <Route exact path="/recipe-form/:id" element={<RecipeEditForm />} />
                 <Route exact path="/reschedule-form" element={<RescheduleForm user={user} />} />

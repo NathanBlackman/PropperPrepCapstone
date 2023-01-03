@@ -6,7 +6,8 @@ import { signIn } from '../Utils/auth';
 export default function Login() {
     return (
         <div>
-            <h1>Welcome! Please Log in!</h1>
+            <h1>Welcome to PropperPrep</h1>
+            <h3>Please Log In</h3>
             <div>
                 <Button className='LoginButton' type='button' onClick={signIn}> 
                 Login with Google

@@ -33,7 +33,7 @@ export default function Recipes() {
     }
 
     const handleDelete = (recipe) => {
-        deleteRecipe(recipe.id).then(() => navigate('/recipes'));
+        deleteRecipe(recipe.id).then(navigate('/recipes'));
     }
     
     
@@ -52,19 +52,6 @@ export default function Recipes() {
                     <>
                         <div className='recipecard-container'>
                             {recipes.map((recipe) => (
-
-                                /*
-                                <div key={recipe.id}>
-                                    <img className='recipeImage' alt={recipe.mealName} src={recipe.imageURL} onClick={() => handleViewNavigate(recipe.id)} />
-                                    <h1>{recipe.mealName}</h1>
-                                    <p>{recipe.description}</p>
-                                    <h3>Scheduled for {recipe.schedule}</h3>
-                                    <Button type='button' onClick={handleUpdateNavigate}>Edit</Button>
-                                    <Button type='button' onClick={handleDelete}>Delete</Button>
-
-                                </div>
-                                */
-                                // The edit button needs to go to the\
                                 <div className='recipe-card' key={recipe.id}>
                             <Card
                                 style={{
@@ -89,7 +76,7 @@ export default function Recipes() {
                                     <Button onClick={handleUpdateNavigate} >
                                         Edit
                                     </Button>
-                                    <Button>
+                                    <Button onClick={handleDelete}>
                                         Delete
                                     </Button>
                                 </CardBody>

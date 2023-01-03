@@ -31,13 +31,6 @@ export default function Home() {
         getAllRecipes().then((recipe) => {
             setRecipes(recipe);
         });
-        /*let isMounted = true;
-        getAllRecipes().then((recipe) => {
-            if (isMounted) setRecipes(recipe)
-        });
-        return () => {
-            isMounted = false;
-        };*/
     }, []);
 
     return (
@@ -55,6 +48,11 @@ export default function Home() {
                                 }}
                                 onClick={handleViewNavigate}
                             >
+                                <CardSubtitle
+                                    className="mb-2 text-muted"
+                                >
+                                    Scheduled For {recipe.schedule}
+                                </CardSubtitle>
                                 <img
                                     alt={recipe.mealName}
                                     src={recipe.imageURL}

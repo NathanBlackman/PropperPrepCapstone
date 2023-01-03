@@ -9,15 +9,14 @@ export default function RecipeEditForm({ user }) {
     const [editRecipe, setEditRecipe] = useState({});
 
     useEffect(() => {
-        //getRecipeById(id).then(setEditRecipe);
-        getRecipeById(id).then(editRecipe);
-    }, [id, editRecipe]);
+        getRecipeById(id).then(setEditRecipe);
+    }, [id]);
 
     return (
         //editRecipe
         <>
             <div>
-                <TheRecipeForm user={setEditRecipe} />
+                <TheRecipeForm firebaseId={editRecipe.userId} />
             </div>
         </>
     )

@@ -12,8 +12,8 @@ import { createRecipe, getRecipeById, updateRecipe } from '../ApiManager';
 
 
 
-export default function TheRecipeForm({ user }) {
-//debugger
+export default function TheRecipeForm({ firebaseId }) {
+  //debugger
   const { id } = useParams();
 
   const initialState = {
@@ -23,7 +23,7 @@ export default function TheRecipeForm({ user }) {
     directions: '',
     imageURL: '',
     schedule: '',
-    userId: user.uid,
+    userId: firebaseId,
   };
 
   const [formInput, setFormInput] = useState(initialState);
@@ -48,7 +48,7 @@ export default function TheRecipeForm({ user }) {
     if (id) {
       debugger
       //id
-      updateRecipe(id, user.uid, { ...formInput })
+      updateRecipe(id, { ...formInput })
         .then(() => {
           resetForm();
           navigate('/recipes');
@@ -64,12 +64,13 @@ export default function TheRecipeForm({ user }) {
     }
   }
 
+
   useEffect(() => {
     if (id) {
       getRecipeById(id).then((recipe) => {
           setFormInput({
             id: parseInt(id),
-            userId: user.uid,
+            userId: firebaseId,
             mealName: recipe.mealName,
             ingredients: recipe.ingredients,
             description: recipe.description,
@@ -79,7 +80,7 @@ export default function TheRecipeForm({ user }) {
           });
       })
     } 
-  }, [id, user.uid]);
+  }, [id, firebaseId]);
   //debugger
   
   return (

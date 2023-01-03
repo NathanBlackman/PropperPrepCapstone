@@ -1,10 +1,10 @@
 import React from 'react';
 import TheRecipeForm from '../Components/TheRecipeForm';
 
-export default function RecipeForm({ user }) {
+export default function RecipeForm({ firebaseId }) {
   return (
     <div>
-      <TheRecipeForm user={user}/>
+      <TheRecipeForm firebaseId={firebaseId} />
     </div>
   )
 }

@@ -45,3 +45,7 @@
 .mealname-view {
     padding-left: 100px;
 }
+
+.recipecard-container {
+    display: flex;
+}
