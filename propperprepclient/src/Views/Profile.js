@@ -15,13 +15,15 @@ export default function Profile({ user }) {
                     alt={user.displayName}
                 />
                 <h1>{user.displayName}</h1>
-                <Button
-                    className='profile-signout'
-                    onClick={signOutUser}
-                >
-                    Sign Out
-                </Button>
-            </div>
+
+            </div>  
+            <Button
+                className='profile-signout'
+                onClick={signOutUser}
+            >
+                Sign Out
+            </Button>
+            
         </div>
     )
 }

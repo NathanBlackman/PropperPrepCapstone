@@ -24,18 +24,16 @@ export default function Navigation({ user }) {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/recipes">Recipes</Nav.Link>
-            <img className='ProfilePicNav'
-              onClick={ProfileNavigate}
-              src={user.photoURL}
-              alt={user.displayName}
-            />
-            <NavDropdown id="basic-nav-dropdown">
-              
-              <NavDropdown.Item href="/profile">{user.displayName}</NavDropdown.Item>
-              
-              <NavDropdown.Divider />
-              <Button onClick={signOutUser}>Sign Out</Button>
-            </NavDropdown>
+            <div className='navbar-dropdown'>
+              <img className='ProfilePicNav'
+                onClick={ProfileNavigate}
+                src={user.photoURL}
+                alt={user.displayName}
+              />
+                
+
+            </div>
+            
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -44,6 +42,16 @@ export default function Navigation({ user }) {
 }
 
 /*
+<NavDropdown id="basic-nav-dropdown">
+              
+                  <NavDropdown.Item href="/profile">{user.displayName}</NavDropdown.Item>
+              
+                  <NavDropdown.Divider />
+                  <Button onClick={signOutUser}>Sign Out</Button>
+                </NavDropdown>
+
+
+
 import {
   Collapse,
   Navbar,
