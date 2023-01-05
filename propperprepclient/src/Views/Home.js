@@ -38,7 +38,7 @@ export default function Home() {
             <h1>Home</h1>
             <div className='FirstScheduled'></div>
             <>
-                <div className='card-container'>
+                <div className='recipecard-container'>
                     {recipes.map((recipe) => (
 
                         <div className='recipe-card' key={recipe.id}>

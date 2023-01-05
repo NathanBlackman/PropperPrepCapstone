@@ -14,9 +14,8 @@ export default function Profile({ user }) {
                     src={user.photoURL} 
                     alt={user.displayName}
                 />
-                <h1>{user.displayName}</h1>
-
             </div>  
+            <h1 className='ProfileName'>{user.displayName}</h1>
             <Button
                 className='profile-signout'
                 onClick={signOutUser}

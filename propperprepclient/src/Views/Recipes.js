@@ -33,7 +33,9 @@ export default function Recipes() {
     }
 
     const handleDelete = (recipe) => {
-        deleteRecipe(recipe.id).then(navigate('/recipes'));
+        //deleteRecipe(recipe.id).then(navigate('/recipes'));
+        deleteRecipe(recipe.id);
+        navigate('/recipes');
     }
     
     

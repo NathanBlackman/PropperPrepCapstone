@@ -38,7 +38,6 @@ export const createRecipe = (recipe) => {
 
 export const deleteRecipe = (id) => {
     return fetch(`https://localhost:7169/api/Recipe/deleteRecipe/${id}`, { method: 'DELETE' })
-        .then(() => this.setState({ status: 'Delete Complete' }));
 }
 
 export const fetchUser = (firebaseId) => {

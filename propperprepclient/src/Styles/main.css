@@ -9,6 +9,11 @@
     align-items: center;
 }
 
+.navbarlogo {
+    width: 50px;
+    margin-right: 20px;
+}
+
 .ProfilePicNav {
     border-radius: 50px;
     max-height: 40px;
@@ -48,6 +53,9 @@
 
 .recipecard-container {
     display: flex;
+    justify-content: space-between;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .navbar-dropdown {
@@ -60,8 +68,31 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 50px;
     height: 250px;
     padding-top: 50px;
     padding-bottom: 15px;
+}
+
+.ProfileName {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loginlogo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-top: 120px;
+}
+
+.LoginButton {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.create-button {
+    padding-left: 50px;
 }
