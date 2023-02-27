@@ -48,7 +48,7 @@ export default function Recipes() {
     return (
         <div>
             <h1>Recipes</h1>
-            <Button type='button' onClick={handleCreateNavigate}>Create Recipe</Button>
+            <Button className='create-button' type='button' onClick={handleCreateNavigate}>Create Recipe</Button>
             <div className='recipe-container'>
                 {recipes ? (
                     <>
@@ -56,12 +56,14 @@ export default function Recipes() {
                             {recipes.map((recipe) => (
                                 <div className='recipe-card' key={recipe.id}>
                             <Card
+                                className='recipe-cards'
                                 style={{
                                 width: '18rem'
                                 }}
                                 onClick={() => handleViewNavigate(recipe.id)}
                             >
                                 <img
+                                    className='meal-image'
                                     alt={recipe.mealName}
                                     src={recipe.imageURL}
                                 />
@@ -78,7 +80,7 @@ export default function Recipes() {
                                     <Button onClick={handleUpdateNavigate} >
                                         Edit
                                     </Button>
-                                    <Button onClick={handleDelete}>
+                                    <Button onClick={() => handleDelete(recipe.id)}>
                                         Delete
                                     </Button>
                                 </CardBody>

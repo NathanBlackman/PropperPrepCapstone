@@ -159,7 +159,7 @@ export default function TheRecipeForm({ firebaseId }) {
             className='recipe-schedule'
           >
             <Label for='schedule'>
-              Directions
+              Schedule
             </Label>
             <Input
               id='schedule'

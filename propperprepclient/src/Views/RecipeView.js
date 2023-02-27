@@ -30,12 +30,15 @@ export default function RecipeView() {
     
     return(
         <div className="recipe-view-style">
-            <img className="recipe-view-img" alt={recipe.mealName} src={recipe.imageURL} />
+            <div className="recipe-view-title-and-img">
+                <h1 className="view-mealname">{recipe.mealName}</h1>
+                <img className="recipe-view-img" alt={recipe.mealName} src={recipe.imageURL} />
+            </div>
             <div className="view-info">
-                <h1 className="mealname-view">{recipe.mealName}</h1>
-                <h3>{recipe.description}</h3>
-                <h4>{recipe.ingredients}</h4>
-                <p>{recipe.directions}</p>
+                <h3 className="view-description">{recipe.description}</h3>
+                <h4 className="view-ingredients">{recipe.ingredients}</h4>
+                <p className="view-directions">{recipe.directions}</p>
+                <h4 className="view-schedule">Scheduled for {recipe.schedule}</h4>
                 <div className="view-button-group">
                     <Button type='button' onClick={handleUpdateNavigate}>Edit</Button>
                     <Button type='button' onClick={() => handleDelete(id)}>Delete</Button>

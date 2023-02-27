@@ -12,6 +12,11 @@
 .navbarlogo {
     width: 50px;
     margin-right: 20px;
+    transition: transform .3s;
+}
+
+.navbarlogo:hover {
+    transform: scale(1.1);
 }
 
 .ProfilePicNav {
@@ -31,24 +36,27 @@
     border-width: 3px;
 }
 
-.recipe-view-style {
-    display: flex;
-    padding-top: 50px;
-}
-
 .recipe-view-img {
-    float: left;
-    width: 250px;
-    padding-left: 50px;
+    height: 500px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    
 }
-/*
-.view-info {
-    float: right;
-}
-*/
 
-.mealname-view {
-    padding-left: 100px;
+.recipe-cards {
+    transition: transform .3s;
+}
+
+.recipe-cards:hover {
+    transform: scale(1.1);
+}
+
+.view-mealname {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .recipecard-container {
@@ -56,6 +64,7 @@
     justify-content: space-between;
     padding-left: 50px;
     padding-right: 50px;
+    padding-top: 50px;
 }
 
 .navbar-dropdown {
@@ -94,5 +103,13 @@
 }
 
 .create-button {
-    padding-left: 50px;
+    margin-left: 50px;
+    margin-bottom: 20px; 
+    margin-top: 20px;
 }
+ 
+
+.meal-image {
+    height: 200px;
+}
+

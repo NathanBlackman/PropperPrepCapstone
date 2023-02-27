@@ -43,10 +43,11 @@ export default function Home() {
 
                         <div className='recipe-card' key={recipe.id}>
                             <Card
+                                className='recipe-cards'
                                 style={{
                                 width: '18rem'
                                 }}
-                                onClick={handleViewNavigate}
+                                onClick={() => handleViewNavigate(recipe.id)}
                             >
                                 <CardSubtitle
                                     className="mb-2 text-muted"
@@ -54,6 +55,7 @@ export default function Home() {
                                     Scheduled For {recipe.schedule}
                                 </CardSubtitle>
                                 <img
+                                    className='meal-image'
                                     alt={recipe.mealName}
                                     src={recipe.imageURL}
                                 />
